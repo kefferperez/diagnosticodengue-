@@ -13,56 +13,63 @@
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         >
-    <TextView
-    android:id="@+id/textView5"
-    android:layout_width="wrap_content"
-    android:layout_height="wrap_content"
-
-    android:layout_gravity="center"
-    android:layout_marginTop="30dp"
-    android:text="Fiebre"
-    android:textAllCaps="true"
-    android:textSize="24sp"
-    android:textStyle="bold" />
-
-    <ImageView
-        android:id="@+id/imageView2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-
-        android:layout_gravity="center"
-        android:layout_marginTop="20dp"
-        android:src="@drawable/fiebre" />
-
-    <TextView
-        android:id="@+id/textView7"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_margin="30dp"
-        android:gravity="center"
-        android:text="@string/descripcionfiebre"
-        android:textAllCaps="true"
-        android:textSize="16sp"
-        android:textStyle="bold" />
-
-    <RadioGroup
-        android:id="@+id/resultado"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content">
-
-        <RadioButton
-            android:id="@+id/radioButtonPresentoFiebre"
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:checked="false"
-            android:text="Presento este sintoma" />
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+            <TextView
+                android:id="@+id/textView5"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
 
-        <RadioButton
-            android:id="@+id/radioButtonNoPpresentoFiebre"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="No presento este sintoma" />
-    </RadioGroup>
+                android:layout_gravity="center"
+                android:layout_marginTop="30dp"
+                android:text="Fiebre"
+                android:textAllCaps="true"
+                android:textSize="24sp"
+                android:textStyle="bold" />
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+
+                android:layout_gravity="center"
+                android:layout_marginTop="20dp"
+                android:src="@drawable/fiebre" />
+
+            <TextView
+                android:id="@+id/textView7"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_margin="30dp"
+                android:gravity="center"
+                android:text="@string/descripcionfiebre"
+                android:textAllCaps="true"
+                android:textSize="16sp"
+                android:textStyle="bold" />
+
+            <RadioGroup
+                android:id="@+id/resultado"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+                <RadioButton
+                    android:id="@+id/radioButtonPresentoFiebre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:checked="false"
+                    android:text="Presento este sintoma" />
+
+                <RadioButton
+                    android:id="@+id/radioButtonNoPpresentoFiebre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:text="No presento este sintoma" />
+            </RadioGroup>
+
+
+        </LinearLayout>
 
     </ScrollView>
 
