@@ -24,6 +24,7 @@ import com.example.prueba5.Fragment.Pregunta4;
 import com.example.prueba5.Fragment.Pregunta5;
 import com.example.prueba5.Fragment.Pregunta6;
 import com.example.prueba5.Fragment.Pregunta9;
+import com.example.prueba5.Fragment.Resultado;
 import com.example.prueba5.ui.main.SectionsPagerAdapter;
 
 public class DiagnosticoSinCuenta extends AppCompatActivity implements DiagnosticoBienvenida.OnFragmentInteractionListener,
@@ -32,7 +33,7 @@ public class DiagnosticoSinCuenta extends AppCompatActivity implements Diagnosti
         Pregunta9.OnFragmentInteractionListener,
         Pregunta10.OnFragmentInteractionListener,  Pregunta12.OnFragmentInteractionListener,
         Pregunta13.OnFragmentInteractionListener, Pregunta14.OnFragmentInteractionListener, Pregunta15.OnFragmentInteractionListener,
-        Pregunta16.OnFragmentInteractionListener, Pregunta17.OnFragmentInteractionListener
+        Pregunta16.OnFragmentInteractionListener, Pregunta17.OnFragmentInteractionListener, Resultado.OnFragmentInteractionListener
 
 {
     int resultado=0;

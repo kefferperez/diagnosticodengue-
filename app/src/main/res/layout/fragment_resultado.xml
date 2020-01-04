@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".Fragment.Resultado">
+
+    <!-- TODO: Update blank fragment layout -->
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:text="El resultado del diagnostico es: "
+        android:textSize="18dp" />
+
+    <EditText
+
+        android:id="@+id/resultadofinaldengue"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="50dp"
+        android:hint="puntuaciondengue" />
+
+    <EditText
+        android:id="@+id/resultadofinalchikungunya"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="puntuacionchikungunya" />
+
+    <EditText
+        android:id="@+id/resultadofinalzika"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:hint="puntuacionzika" />
+</LinearLayout>

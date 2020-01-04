@@ -26,6 +26,7 @@ import com.example.prueba5.Fragment.Pregunta4;
 import com.example.prueba5.Fragment.Pregunta5;
 import com.example.prueba5.Fragment.Pregunta6;
 import com.example.prueba5.Fragment.Pregunta9;
+import com.example.prueba5.Fragment.Resultado;
 import com.example.prueba5.R;
 
 /**
@@ -59,6 +60,8 @@ public class PlaceholderFragment extends Fragment {
             case 13:fragment=new Pregunta15(); break;
             case 14:fragment=new Pregunta16(); break;
             case 15:fragment=new Pregunta17(); break;
+
+            case 16:fragment=new Resultado(); break;
 
 
 
