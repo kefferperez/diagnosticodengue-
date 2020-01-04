@@ -31,6 +31,7 @@ public class Pregunta2 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    //variables del sharedprefence para leer y editar
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     // TODO: Rename and change types of parameters
@@ -132,24 +133,24 @@ public class Pregunta2 extends Fragment {
         {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
-                int dengue = prefs.getInt("dengue", 0);
-                Log.i("mivalor", "el valor antes del cambio es:"+dengue);
+                int pregunta2 = prefs.getInt("pregunta2", 0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta2);
                 switch(checkedId){
 
                         case R.id.radioButtonPresentoEscalofrios:
-                            dengue = dengue + 1;
+                            pregunta2 = 1;
                             editor = prefs.edit();
-                            editor.putInt("dengue", dengue);
+                            editor.putInt("pregunta2", pregunta2);
                             editor.apply();
-                            Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                            Log.i("mivalor", "pregunta2:"+pregunta2);
                         // do operations specific to this selection
                         break;
                     case R.id.radioButtonNoPpresentoEscalofrios:
-                        dengue = dengue - 1;
+                        pregunta2 = 0;
                         editor = prefs.edit();
-                        editor.putInt("dengue", dengue);
+                        editor.putInt("pregunta2", pregunta2);
                         editor.apply();
-                        Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                        Log.i("mivalor", "pregunta2:"+pregunta2);
                         // do operations specific to this selection
                         break;
                 }

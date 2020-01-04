@@ -27,6 +27,7 @@ public class DiagnosticoBienvenida extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    //variables del sharedprefence para leer y editar
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
     // TODO: Rename and change types of parameters
@@ -64,9 +65,11 @@ public class DiagnosticoBienvenida extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+        //Limpiando valor del sharedprefence
         prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
         editor = prefs.edit();
-        editor.putInt("dengue", 0);
+        editor.putInt("pregunta1", 0);
+        editor.putInt("pregunta2",0);
         editor.apply();
     }
 

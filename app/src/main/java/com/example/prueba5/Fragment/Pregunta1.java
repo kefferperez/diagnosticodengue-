@@ -31,7 +31,7 @@ public class Pregunta1 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    //variables del sharedprefence para leer y editar
     private SharedPreferences prefs;
     private SharedPreferences.Editor editor;
 
@@ -99,23 +99,23 @@ public class Pregunta1 extends Fragment {
 
 
                 prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
-                int dengue = prefs.getInt("dengue", 0);
-                Log.i("mivalor", "el valor antes del cambio es:"+dengue);
+                int pregunta1 = prefs.getInt("pregunta1", 0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta1);
                 switch(checkedId){
                     case R.id.radioButtonPresentoFiebre:
-                        dengue = dengue + 2;
+                        pregunta1 = 1;
                         editor = prefs.edit();
-                        editor.putInt("dengue", dengue);
+                        editor.putInt("pregunta1", pregunta1);
                         editor.apply();
-                        Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                        Log.i("mivalor", "pregunta1:"+pregunta1);
                         // do operations specific to this selection
                         break;
                     case R.id.radioButtonNoPpresentoFiebre:
-                        dengue = dengue - 2;
+                        pregunta1=0;
                         editor = prefs.edit();
-                        editor.putInt("dengue", dengue);
+                        editor.putInt("pregunta1", pregunta1);
                         editor.apply();
-                        Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                        Log.i("mivalor", "pregunta1:"+pregunta1);
                         // do operations specific to this selection
                         break;
                 }

@@ -1,14 +1,19 @@
 package com.example.prueba5.Fragment;
 
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,9 +32,10 @@ public class Resultado extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
-
+    View view;
     private OnFragmentInteractionListener mListener;
-
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
     public Resultado() {
         // Required empty public constructor
     }
@@ -59,13 +65,29 @@ public class Resultado extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
+
     }
 
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
+
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_resultado, container, false);
+
+                view=inflater.inflate(R.layout.fragment_resultado, container, false);
+        Button miresultado =  view.findViewById(R.id.btnresultado);
+        miresultado.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta1 = prefs.getInt("pregunta1", 0);
+                int pregunta2 = prefs.getInt("pregunta2", 0);
+                Log.i("mivalor", "el valor de pregunta1 es:"+pregunta1);
+                Log.i("mivalor", "el valor de pregunta2 es:"+pregunta2);
+            }
+        });
+        return view;
     }
 
     // TODO: Rename method, update argument and hook method into UI event
