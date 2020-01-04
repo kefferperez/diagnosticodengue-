@@ -2,16 +2,21 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +31,8 @@ public class Pregunta2 extends Fragment {
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
-
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
@@ -72,6 +78,7 @@ public class Pregunta2 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -80,7 +87,7 @@ public class Pregunta2 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta2, container, false);
 
-        btnTengoE=view.findViewById(R.id.radioButtonPresentoEscalofrios);
+/*        btnTengoE=view.findViewById(R.id.radioButtonPresentoEscalofrios);
         btnNotengoE=view.findViewById(R.id.radioButtonNoPpresentoEscalofrios);
         texto=view.findViewById(R.id.dengue2);
 
@@ -116,6 +123,35 @@ public class Pregunta2 extends Fragment {
                     texto.setText(""+escalosfriod);
                     texto1.setText(""+escalosfrioc);
                     texto2.setText(""+escalosfrioz);
+                }
+            }
+        });*/
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
+
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int dengue = prefs.getInt("dengue", 0);
+                Log.i("mivalor", "el valor antes del cambio es:"+dengue);
+                switch(checkedId){
+
+                        case R.id.radioButtonPresentoEscalofrios:
+                            dengue = dengue + 1;
+                            editor = prefs.edit();
+                            editor.putInt("dengue", dengue);
+                            editor.apply();
+                            Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentoEscalofrios:
+                        dengue = dengue - 1;
+                        editor = prefs.edit();
+                        editor.putInt("dengue", dengue);
+                        editor.apply();
+                        Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });
@@ -161,4 +197,6 @@ public class Pregunta2 extends Fragment {
         // TODO: Update argument type and name
         void onFragmentInteraction(Uri uri);
     }
+
+
 }

@@ -2,16 +2,21 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +32,8 @@ public class Pregunta1 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
-
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
 
     // TODO: Rename and change types of parameters
@@ -75,6 +81,7 @@ public class Pregunta1 extends Fragment {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
+
     }
 
     @Override
@@ -84,7 +91,36 @@ public class Pregunta1 extends Fragment {
 
         view =inflater.inflate(R.layout.fragment_pregunta1, container, false);
 
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+
+
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int dengue = prefs.getInt("dengue", 0);
+                Log.i("mivalor", "el valor antes del cambio es:"+dengue);
+                switch(checkedId){
+                    case R.id.radioButtonPresentoFiebre:
+                        dengue = dengue + 2;
+                        editor = prefs.edit();
+                        editor.putInt("dengue", dengue);
+                        editor.apply();
+                        Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentoFiebre:
+                        dengue = dengue - 2;
+                        editor = prefs.edit();
+                        editor.putInt("dengue", dengue);
+                        editor.apply();
+                        Log.i("mivalor", "el valor despues del cambio es:"+dengue);
+                        // do operations specific to this selection
+                        break;
+                }
+            }
+        });
         return view;
     }
 
@@ -128,4 +164,7 @@ public class Pregunta1 extends Fragment {
         void onFragmentInteraction(Uri uri);
 
     }
+
+
+
 }
