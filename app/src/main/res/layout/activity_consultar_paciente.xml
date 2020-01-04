@@ -1,0 +1,110 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+
+    android:background="#FAFAFA"
+    android:orientation="vertical"
+    tools:context=".ConsultarPaciente">
+
+    <LinearLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:background="#1DE9B6"
+        android:orientation="vertical">
+
+
+        <TextView
+            android:id="@+id/textViewTituloConsultarPaciente"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="30dp"
+            android:gravity="center"
+            android:text="Consultar Paciente"
+
+            android:textColor="#0A0A0A"
+            android:textSize="20dp" />
+
+        <ImageView
+            android:id="@+id/imageView"
+            android:layout_width="wrap_content"
+            android:layout_height="200dp"
+            android:layout_gravity="center"
+            android:layout_marginTop="40dp"
+            android:layout_marginBottom="40dp"
+            app:srcCompat="@drawable/paciente" />
+
+
+    </LinearLayout>
+
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/editTextNombreDePacienteConsultar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:ems="6"
+            android:hint="Nombres"
+            android:inputType="textCapCharacters" />
+
+        <EditText
+            android:id="@+id/editTextApellidoPaternoDePacienteConsultar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:hint="ApellidoPaterno"
+            android:inputType="textCapCharacters" />
+
+        <EditText
+            android:id="@+id/editTextApellidoMaternoDePacienteConsultar"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="100dp"
+            android:hint="ApellidoMaterno"
+            android:inputType="textCapCharacters" />
+
+    </LinearLayout>
+
+    <Button
+        android:id="@+id/buttonConsultarPorNombreDePaciente"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="Consultar" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="25dp"
+        android:orientation="horizontal">
+
+
+        <EditText
+            android:id="@+id/editTextConsultarPorNumeroDeDocumento"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:hint="Numero de documento"
+            android:inputType="number" />
+
+    </LinearLayout>
+
+
+    <Button
+        android:id="@+id/buttonConsultarPorNumeroDeDocumento"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="15dp"
+        android:text="Consultar" />
+
+</LinearLayout>

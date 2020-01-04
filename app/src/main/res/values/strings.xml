@@ -1,0 +1,44 @@
+<resources>
+    <string name="app_name">Prueba 5</string>
+    <string name="title_activity_diagnostico_sin_cuenta">DiagnosticoSinCuenta</string>
+    <string name="tab_text_1">Tab 1</string>
+    <string name="tab_text_2">Tab 2</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="dominio">https://addordelete.000webhostapp.com</string>
+    <string name="login">/Login.php?Usuario=</string>
+    <string name="Insertarcliente">/Insertarcliente.php?</string>
+    <string name="vercliente">/Clientes.php</string>
+    <string name="verproducto">/Productos.php</string>
+    <string name="insertarproducto">/Insertarproducto.php?</string>
+    <string name="descripcionfiebre">La temperatura normal del cuerpo se encuentra entre los 36.5°C y 37.5°C.
+                    Fiebre es si la temperatura es mayor a los 37.5°C </string>
+    <string name="descripcionescalosfrios">Sensación de tener frío, a menudo acompañada
+        de temblores, aunque no estés necesariamente en un ambiente frío.</string>
+    <string name="descripcioncansancio">El cansancio es la falta de fuerzas después de realizar un trabajo físico,
+        intelectual o emocional, o por la falta de descanso. Pero puede ser síntoma de una enfermedad,
+        si no hay una actividad previa que lo justifique.</string>
+    <string name="descripcionsarpullido">Un sarpullido es un área en la piel que está irritada o inflamada.</string>
+    <string name="descripcionconjuntivitis">La conjuntivitis es una irritación o inflamación de la conjuntiva que
+        cubre la parte blanca del globo ocular.La conjuntivitis puede ser extremadamente contagiosa y
+        se transmite por el contacto con las secreciones oculares de una persona infectada. </string>
+    <string name="descripciondolordecabeza">Sensación dolorosa en cualquier parte de la cabeza,
+        que va desde un dolor agudo a un dolor leve </string>
+    <string name="dolordetrasdelosojos"></string>
+    <string name="dolormusuclaryarticulaciones"></string>
+    <string name="inflamaciondelosganglioslinfaticos"> agrandamiento de uno o más ganglios linfáticos.
+    Las áreas comunes en donde se pueden palpar los ganglios linfáticos (con los dedos) son: la ingle, la axila,el cuello,debajo
+    de la mandibula, detras de los oidos.</string>
+    <string name="edemademanosypies">El edema es la hinchazón causada por la acumulación anormal de líquidos en el cuerpo.
+        El líquido se acumula bajo la piel, dentro de los tejidos que están fuera del sistema circulatorio.</string>
+    <string name="inflamaciondelostendones"></string>
+    <string name="descripciondolorabdominal">Es el dolor que se siente en el área entre el pecho y la ingle,
+        a menudo denominada región estomacal o vientre.</string>
+    <string name="descripcionnauseasyvomito">Náuseas es la sensación de tener ganas de vomitar.
+    Vomitar o trasbocar es forzar los contenidos del estómago a subir a través del esófago y salir por la boca.</string>
+    <string name="diarrea">La diarrea es la evacuación intestinal de heces flojas y líquidas tres o más veces al día.</string>
+    <string name="sangradodeencias"></string>
+    <string name="hemorragianasal">Es la pérdida de sangre del tejido que recubre la nariz</string>
+    <string name="dificultadpararespirar"></string>
+</resources>
