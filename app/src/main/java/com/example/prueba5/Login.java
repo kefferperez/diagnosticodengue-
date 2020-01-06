@@ -49,6 +49,11 @@ public class Login extends AppCompatActivity {
                                     Intent bienvenidoPaciente=new Intent(Login.this,BienvenidaPaciente.class);
                                     Login.this.startActivity(bienvenidoPaciente);
                                 }
+                                if(tipousuario==3){
+                                    Intent bienvenidoEspecialistaGestor=new Intent(Login.this,BienvenidaEspecialistaGestor.class);
+                                    Login.this.startActivity(bienvenidoEspecialistaGestor);
+                                }
+
 
                             }else
                             {

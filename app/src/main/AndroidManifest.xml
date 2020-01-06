@@ -11,7 +11,9 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".PerfilConsultarPaciente"/>
+        <activity android:name=".ListarPaciente"></activity>
+        <activity android:name=".BienvenidaEspecialistaGestor" />
+        <activity android:name=".PerfilConsultarPaciente" />
         <activity android:name=".ConsultarPaciente" />
         <activity android:name=".BienvenidaPaciente" />
         <activity android:name=".BienvenidaEspecialista" />
