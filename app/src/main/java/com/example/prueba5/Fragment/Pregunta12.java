@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,14 @@ public class Pregunta12 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int abdominald=0;
-    int abdominalc=0;
-    int abdominalz=0;
-    RadioButton btnTengoabdominal;
-    RadioButton btnNotengoabdominal;
+
     View view;
     Activity actividad;
 
@@ -77,29 +81,46 @@ public class Pregunta12 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta12, container, false);
 
-        btnTengoabdominal=view.findViewById(R.id.radioButtonPresentoabdominal);
-        btnNotengoabdominal=view.findViewById(R.id.radioButtonNoPpresentoabdominal);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengoabdominal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengoabdominal.isChecked()==true){
-                    abdominald+=4;
-                    abdominalc+=3;
-                    abdominalz+=2;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta12dengue = prefs.getInt("pregunta12dengue", 0);
+                int pregunta12chikungunya=prefs.getInt("pregunta12chikungunya",0);
+                int pregunta12zika=prefs.getInt("pregunta12zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta12dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentoabdominal:
+                        pregunta12dengue = 4;
+                        pregunta12chikungunya =3;
+                        pregunta12zika=2;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta12dengue", pregunta12dengue);
+                        editor.putInt("pregunta12chikungunya", pregunta12chikungunya);
+                        editor.putInt("pregunta12zika", pregunta12zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta12:"+pregunta12dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentoabdominal:
+                        pregunta12dengue = 0;
+                        pregunta12chikungunya =0;
+                        pregunta12zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta12dengue", pregunta12dengue);
+                        editor.putInt("pregunta12chikungunya", pregunta12chikungunya);
+                        editor.putInt("pregunta12zika", pregunta12zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta12:"+pregunta12dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });
-        btnNotengoabdominal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengoabdominal.isChecked()==true){
-                    abdominald+=0;
-                    abdominalc+=0;
-                    abdominalz+=0;
-                }
-            }
-        });
+
 
         return view;
     }

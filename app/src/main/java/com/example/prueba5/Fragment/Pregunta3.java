@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -21,20 +26,20 @@ import com.example.prueba5.R;
  * create an instance of this fragment.
  */
 public class Pregunta3 extends Fragment {
+
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
+    //variables del sharedprefence para leer y editar
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
 
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int cansanciod=0;
-    int cansancioc=0;
-    int cansancioz=0;
-    RadioButton btnTengoC;
-    RadioButton btnNotengoC;
+
     View view;
     Activity actividad;
 
@@ -77,26 +82,42 @@ public class Pregunta3 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta3, container, false);
 
-        btnTengoC=view.findViewById(R.id.radioButtonPresentoCansancio);
-        btnNotengoC=view.findViewById(R.id.radioButtonNoPpresentoCansancio);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengoC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengoC.isChecked()==true){
-                    cansanciod+=3;
-                    cansancioc+=3;
-                    cansancioz+=3;
-                }
-            }
-        });
-        btnNotengoC.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengoC.isChecked()==true){
-                    cansanciod+=0;
-                    cansancioc+=0;
-                    cansancioz+=0;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta3dengue = prefs.getInt("pregunta3dengue", 0);
+                int pregunta3chikungunya=prefs.getInt("pregunta3chikungunya",0);
+                int pregunta3zika=prefs.getInt("pregunta3zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta3dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentoCansancio:
+                        pregunta3dengue = 3;
+                        pregunta3chikungunya =3;
+                        pregunta3zika=3;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta3dengue", pregunta3dengue);
+                        editor.putInt("pregunta3chikungunya", pregunta3chikungunya);
+                        editor.putInt("pregunta3zika", pregunta3zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta3:"+pregunta3dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentoCansancio:
+                        pregunta3dengue = 0;
+                        pregunta3chikungunya =0;
+                        pregunta3zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta3dengue", pregunta3dengue);
+                        editor.putInt("pregunta3chikungunya", pregunta3chikungunya);
+                        editor.putInt("pregunta3zika", pregunta3zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta2:"+pregunta3dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });

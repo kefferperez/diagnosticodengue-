@@ -51,8 +51,9 @@
                 android:textStyle="bold" />
 
             <RadioGroup
+                android:id="@+id/resultado"
                 android:layout_width="wrap_content"
-                android:layout_height="wrap_content" >
+                android:layout_height="wrap_content">
 
                 <RadioButton
                     android:id="@+id/radioButtonPresentoCansancio"
@@ -67,27 +68,6 @@
                     android:layout_height="wrap_content"
                     android:text="No presento este sintoma" />
             </RadioGroup>
-
-            <TextView
-                android:id="@+id/dengue3"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/chin3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
-
-            <TextView
-                android:id="@+id/zik3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:text="TextView"
-                android:visibility="invisible" />
 
         </LinearLayout>
 

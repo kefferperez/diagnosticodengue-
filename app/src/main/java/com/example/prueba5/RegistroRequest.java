@@ -15,11 +15,12 @@ public class RegistroRequest extends StringRequest {
 
     private static final String ruta="https://addordelete.000webhostapp.com/Insertarcliente.php?";
     private Map<String,String>Parametros;
-    public RegistroRequest(String Nombre, String ApellidoPaterno,String ApellidoMaterno, int Edad,String Sexo
+    public RegistroRequest(String Dni,String Nombre, String ApellidoPaterno,String ApellidoMaterno, int Edad,String Sexo
             ,String Departamento,String Provincia,String Distrito,String Direccion, int Celular,String CorreoElectronico
             ,Response.Listener<String> listener){
         super(Request.Method.POST,ruta, listener,null);
         Parametros= new HashMap<>();
+        Parametros.put("Dni",Dni+"");
         Parametros.put("Nombre",Nombre+"");
         Parametros.put("ApellidoPaterno",ApellidoPaterno+"");
         Parametros.put("ApellidoMaterno",ApellidoMaterno+"");

@@ -41,7 +41,7 @@ public class Pregunta1 extends Fragment {
     private String mParam2;
 //VARIABLE QUE SE VA SUMAR LUEGO PARA RESULTADO
 
-
+//CREACION DE LA VISTA PARA INFLAR EL LAYOUT
     View view;
 
 
@@ -99,23 +99,33 @@ public class Pregunta1 extends Fragment {
 
 
                 prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
-                int pregunta1 = prefs.getInt("pregunta1", 0);
-                Log.i("mivalor", "el valor antes del cambio es:"+pregunta1);
+                int pregunta1dengue = prefs.getInt("pregunta1dengue", 0);
+                int pregunta1chikungunya=prefs.getInt("pregunta1chikungunya",0);
+                int pregunta1zika=prefs.getInt("pregunta1zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta1dengue);
                 switch(checkedId){
                     case R.id.radioButtonPresentoFiebre:
-                        pregunta1 = 1;
+                        pregunta1dengue = 4;
+                        pregunta1chikungunya=3;
+                        pregunta1zika=3;
                         editor = prefs.edit();
-                        editor.putInt("pregunta1", pregunta1);
+                        editor.putInt("pregunta1dengue", pregunta1dengue);
+                        editor.putInt("pregunta1chikungunya", pregunta1chikungunya);
+                        editor.putInt("pregunta1zika", pregunta1zika);
                         editor.apply();
-                        Log.i("mivalor", "pregunta1:"+pregunta1);
+                        Log.i("mivalor", "pregunta1:"+pregunta1dengue);
                         // do operations specific to this selection
                         break;
                     case R.id.radioButtonNoPpresentoFiebre:
-                        pregunta1=0;
+                        pregunta1dengue=0;
+                        pregunta1chikungunya=0;
+                        pregunta1zika=0;
                         editor = prefs.edit();
-                        editor.putInt("pregunta1", pregunta1);
+                        editor.putInt("pregunta1dengue", pregunta1dengue);
+                        editor.putInt("pregunta1chikungunya", pregunta1chikungunya);
+                        editor.putInt("pregunta1zika", pregunta1zika);
                         editor.apply();
-                        Log.i("mivalor", "pregunta1:"+pregunta1);
+                        Log.i("mivalor", "pregunta1:"+pregunta1dengue);
                         // do operations specific to this selection
                         break;
                 }

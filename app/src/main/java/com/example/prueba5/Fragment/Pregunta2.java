@@ -38,15 +38,10 @@ public class Pregunta2 extends Fragment {
     private String mParam1;
     private String mParam2;
 
-    int escalosfriod=0;
-    int escalosfrioc=0;
-    int escalosfrioz=0;
-    RadioButton btnTengoE;
-    RadioButton btnNotengoE;
+
     View view;
     Activity actividad;
 
-    TextView texto,texto1,texto2,texto3,texto4,texto5,texto6;
 
     private OnFragmentInteractionListener mListener;
 
@@ -88,69 +83,41 @@ public class Pregunta2 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta2, container, false);
 
-/*        btnTengoE=view.findViewById(R.id.radioButtonPresentoEscalofrios);
-        btnNotengoE=view.findViewById(R.id.radioButtonNoPpresentoEscalofrios);
-        texto=view.findViewById(R.id.dengue2);
 
-        btnTengoE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengoE.isChecked()==true){
-                    escalosfriod+=3;
-                    escalosfrioc+=3;
-                    escalosfrioz+=3;
-
-                    texto=(TextView)getActivity().findViewById(R.id.dengue3);
-                    texto1=(TextView)getActivity().findViewById(R.id.chin3);
-                    texto2=(TextView)getActivity().findViewById(R.id.zik3);
-
-                    texto3=(TextView)getActivity().findViewById(R.id.dengue2);
-
-                }
-            }
-        });
-        btnNotengoE.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengoE.isChecked()==true){
-                    escalosfriod+=0;
-                    escalosfrioc+=0;
-                    escalosfrioz+=0;
-
-                    texto=(TextView)getActivity().findViewById(R.id.dengue3);
-                    texto1=(TextView)getActivity().findViewById(R.id.chin3);
-                    texto2=(TextView)getActivity().findViewById(R.id.zik3);
-
-                    texto.setText(""+escalosfriod);
-                    texto1.setText(""+escalosfrioc);
-                    texto2.setText(""+escalosfrioz);
-                }
-            }
-        });*/
         RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
         rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
         {
             public void onCheckedChanged(RadioGroup group, int checkedId) {
                 prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
-                int pregunta2 = prefs.getInt("pregunta2", 0);
-                Log.i("mivalor", "el valor antes del cambio es:"+pregunta2);
+                int pregunta2dengue = prefs.getInt("pregunta2dengue", 0);
+                int pregunta2chikungunya=prefs.getInt("pregunta2chikungunya",0);
+                int pregunta2zika=prefs.getInt("pregunta2zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta2dengue);
                 switch(checkedId){
 
                         case R.id.radioButtonPresentoEscalofrios:
-                            pregunta2 = 1;
+                            pregunta2dengue = 3;
+                            pregunta2chikungunya =3;
+                            pregunta2zika=3;
                             editor = prefs.edit();
-                            editor.putInt("pregunta2", pregunta2);
+                            editor.putInt("pregunta2dengue", pregunta2dengue);
+                            editor.putInt("pregunta2chikungunya", pregunta2chikungunya);
+                            editor.putInt("pregunta2zika", pregunta2zika);
                             editor.apply();
-                            Log.i("mivalor", "pregunta2:"+pregunta2);
+                            Log.i("mivalor", "pregunta2:"+pregunta2dengue);
                         // do operations specific to this selection
                         break;
                     case R.id.radioButtonNoPpresentoEscalofrios:
-                        pregunta2 = 0;
+                        pregunta2dengue = 0;
+                        pregunta2chikungunya =0;
+                        pregunta2zika=0;
                         editor = prefs.edit();
-                        editor.putInt("pregunta2", pregunta2);
+                        editor.putInt("pregunta2dengue", pregunta2dengue);
+                        editor.putInt("pregunta2chikungunya", pregunta2chikungunya);
+                        editor.putInt("pregunta2zika", pregunta2zika);
                         editor.apply();
-                        Log.i("mivalor", "pregunta2:"+pregunta2);
+                        Log.i("mivalor", "pregunta2:"+pregunta2dengue);
                         // do operations specific to this selection
                         break;
                 }

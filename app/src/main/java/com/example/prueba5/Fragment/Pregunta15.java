@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,14 @@ public class Pregunta15 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int sangradod=0;
-    int sangradoc=0;
-    int sangradoz=0;
-    RadioButton btnTengosangrado;
-    RadioButton btnNotengosangrado;
+
     View view;
     Activity actividad;
 
@@ -77,29 +81,46 @@ public class Pregunta15 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta15, container, false);
 
-        btnTengosangrado=view.findViewById(R.id.radioButtonPresentosangrado);
-        btnNotengosangrado=view.findViewById(R.id.radioButtonNoPpresentosangrado);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengosangrado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengosangrado.isChecked()==true){
-                    sangradod+=4;
-                    sangradoc+=0;
-                    sangradoz+=0;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta15dengue = prefs.getInt("pregunta15dengue", 0);
+                int pregunta15chikungunya=prefs.getInt("pregunta15chikungunya",0);
+                int pregunta15zika=prefs.getInt("pregunta15zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta15dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentosangrado:
+                        pregunta15dengue = 4;
+                        pregunta15chikungunya =0;
+                        pregunta15zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta15dengue", pregunta15dengue);
+                        editor.putInt("pregunta15chikungunya", pregunta15chikungunya);
+                        editor.putInt("pregunta15zika", pregunta15zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta15:"+pregunta15dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentosangrado:
+                        pregunta15dengue = 0;
+                        pregunta15chikungunya =0;
+                        pregunta15zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta15dengue", pregunta15dengue);
+                        editor.putInt("pregunta15chikungunya", pregunta15chikungunya);
+                        editor.putInt("pregunta15zika", pregunta15zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta15:"+pregunta15dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });
-        btnNotengosangrado.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengosangrado.isChecked()==true){
-                    sangradod+=0;
-                    sangradoc+=0;
-                    sangradoz+=0;
-                }
-            }
-        });
+
 
         return view;
     }

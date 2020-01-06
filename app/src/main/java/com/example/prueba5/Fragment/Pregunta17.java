@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,14 @@ public class Pregunta17 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int respirard=0;
-    int respirarc=0;
-    int respirarz=0;
-    RadioButton btnTengorespirar;
-    RadioButton btnNotengorespirar;
+
     View view;
     Activity actividad;
     private OnFragmentInteractionListener mListener;
@@ -76,29 +80,46 @@ public class Pregunta17 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta17, container, false);
 
-        btnTengorespirar=view.findViewById(R.id.radioButtonPresentorespirar);
-        btnNotengorespirar=view.findViewById(R.id.radioButtonNoPpresentorespirar);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengorespirar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengorespirar.isChecked()==true){
-                    respirard+=4;
-                    respirarc+=0;
-                    respirarz+=0;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta17dengue = prefs.getInt("pregunta17dengue", 0);
+                int pregunta17chikungunya=prefs.getInt("pregunta17chikungunya",0);
+                int pregunta17zika=prefs.getInt("pregunta17zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta17dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentorespirar:
+                        pregunta17dengue = 4;
+                        pregunta17chikungunya =0;
+                        pregunta17zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta17dengue", pregunta17dengue);
+                        editor.putInt("pregunta17chikungunya", pregunta17chikungunya);
+                        editor.putInt("pregunta17zika", pregunta17zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta17:"+pregunta17dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentorespirar:
+                        pregunta17dengue = 0;
+                        pregunta17chikungunya =0;
+                        pregunta17zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta17dengue", pregunta17dengue);
+                        editor.putInt("pregunta17chikungunya", pregunta17chikungunya);
+                        editor.putInt("pregunta17zika", pregunta17zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta17:"+pregunta17dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });
-        btnNotengorespirar.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengorespirar.isChecked()==true){
-                    respirard+=0;
-                    respirarc+=0;
-                    respirarz+=0;
-                }
-            }
-        });
+
 
         return view;
     }

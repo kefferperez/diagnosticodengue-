@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,14 @@ public class Pregunta10 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int edemad=0;
-    int edemac=0;
-    int edemaz=0;
-    RadioButton btnTengoedema;
-    RadioButton btnNotengoedema;
+
     View view;
     Activity actividad;
     private OnFragmentInteractionListener mListener;
@@ -76,26 +80,42 @@ public class Pregunta10 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta10, container, false);
 
-        btnTengoedema=view.findViewById(R.id.radioButtonPresentoedema);
-        btnNotengoedema=view.findViewById(R.id.radioButtonNoPpresentoedema);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengoedema.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengoedema.isChecked()==true){
-                    edemad+=1;
-                    edemac+=2;
-                    edemaz+=1;
-                }
-            }
-        });
-        btnNotengoedema.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengoedema.isChecked()==true){
-                    edemad+=0;
-                    edemac+=0;
-                    edemaz+=0;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta10dengue = prefs.getInt("pregunta10dengue", 0);
+                int pregunta10chikungunya=prefs.getInt("pregunta10chikungunya",0);
+                int pregunta10zika=prefs.getInt("pregunta10zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta10dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentoedema:
+                        pregunta10dengue = 1;
+                        pregunta10chikungunya =2;
+                        pregunta10zika=1;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta10dengue", pregunta10dengue);
+                        editor.putInt("pregunta10chikungunya", pregunta10chikungunya);
+                        editor.putInt("pregunta10zika", pregunta10zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta10:"+pregunta10dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentoedema:
+                        pregunta10dengue = 0;
+                        pregunta10chikungunya =0;
+                        pregunta10zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta10dengue", pregunta10dengue);
+                        editor.putInt("pregunta10chikungunya", pregunta10chikungunya);
+                        editor.putInt("pregunta10zika", pregunta10zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta10:"+pregunta10dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });

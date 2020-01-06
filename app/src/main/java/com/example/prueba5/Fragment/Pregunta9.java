@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,14 @@ public class Pregunta9 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int inflad=0;
-    int inflac=0;
-    int inflaz=0;
-    RadioButton btnTengoinfla;
-    RadioButton btnNotengoinfla;
+
     View view;
     Activity actividad;
 
@@ -77,29 +81,46 @@ public class Pregunta9 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta9, container, false);
 
-        btnTengoinfla=view.findViewById(R.id.radioButtonPresentoinfla);
-        btnNotengoinfla=view.findViewById(R.id.radioButtonNoPpresentoinfla);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengoinfla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengoinfla.isChecked()==true){
-                    inflad+=2;
-                    inflac+=2;
-                    inflaz+=1;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta9dengue = prefs.getInt("pregunta9dengue", 0);
+                int pregunta9chikungunya=prefs.getInt("pregunta9chikungunya",0);
+                int pregunta9zika=prefs.getInt("pregunta9zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta9dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentoinfla:
+                        pregunta9dengue = 2;
+                        pregunta9chikungunya =2;
+                        pregunta9zika=1;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta9dengue", pregunta9dengue);
+                        editor.putInt("pregunta9chikungunya", pregunta9chikungunya);
+                        editor.putInt("pregunta9zika", pregunta9zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta9:"+pregunta9dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentoinfla:
+                        pregunta9dengue = 0;
+                        pregunta9chikungunya =0;
+                        pregunta9zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta9dengue", pregunta9dengue);
+                        editor.putInt("pregunta9chikungunya", pregunta9chikungunya);
+                        editor.putInt("pregunta9zika", pregunta9zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta9:"+pregunta9dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });
-        btnNotengoinfla.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengoinfla.isChecked()==true){
-                    inflad+=0;
-                    inflac+=0;
-                    inflaz+=0;
-                }
-            }
-        });
+
 
         return view;
     }

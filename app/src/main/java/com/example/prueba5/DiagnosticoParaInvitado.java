@@ -25,6 +25,7 @@ public class DiagnosticoParaInvitado extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_diagnostico_para_invitado);
         //Enlace a los objetos del activity diagnostico para invitado
+        final EditText dnT=findViewById(R.id.edTxtDni);
         final EditText nombreT=findViewById(R.id.edTxtNombre);
         final EditText apellidoPaternoT=findViewById(R.id.edTxtApellidoPaterno);
         final EditText apellidoMaternoT=findViewById(R.id.edTxtApellidoMaterno);
@@ -42,6 +43,7 @@ public class DiagnosticoParaInvitado extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 //Definicion de variables en la clase
+                String dni=dnT.getText().toString();
                 String nombre=nombreT.getText().toString();
                 String apellidoPaterno=apellidoPaternoT.getText().toString();
                 String apellidoMaterno=apellidoMaternoT.getText().toString();
@@ -80,7 +82,7 @@ public class DiagnosticoParaInvitado extends AppCompatActivity {
                     }
                 };
 
-                RegistroRequest r =new RegistroRequest(nombre,apellidoPaterno,apellidoMaterno,edad,sexo,departamento,provincia
+                RegistroRequest r =new RegistroRequest(dni,nombre,apellidoPaterno,apellidoMaterno,edad,sexo,departamento,provincia
                         ,distrito,direccion,celular,correoElectronico,respuesta );
                 RequestQueue cola= Volley.newRequestQueue(DiagnosticoParaInvitado.this);
                 cola.add(r);

@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,13 @@ public class Pregunta6 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int cabezad=0;
-    int cabezac=0;
-    int cabezaz=0;
-    RadioButton btnTengocza;
-    RadioButton btnNotengocza;
+
     View view;
     Activity actividad;
 
@@ -77,26 +80,42 @@ public class Pregunta6 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta6, container, false);
 
-        btnTengocza=view.findViewById(R.id.radioButtonPresentoCabeza);
-        btnNotengocza=view.findViewById(R.id.radioButtonNoPpresentoCabeza);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengocza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengocza.isChecked()==true){
-                    cabezad+=3;
-                    cabezac+=2;
-                    cabezaz+=1;
-                }
-            }
-        });
-        btnNotengocza.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengocza.isChecked()==true){
-                    cabezad+=0;
-                    cabezac+=0;
-                    cabezaz+=0;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta6dengue = prefs.getInt("pregunta6dengue", 0);
+                int pregunta6chikungunya=prefs.getInt("pregunta6chikungunya",0);
+                int pregunta6zika=prefs.getInt("pregunta6zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta6dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentoCabeza:
+                        pregunta6dengue = 3;
+                        pregunta6chikungunya =2;
+                        pregunta6zika=1;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta6dengue", pregunta6dengue);
+                        editor.putInt("pregunta6chikungunya", pregunta6chikungunya);
+                        editor.putInt("pregunta6zika", pregunta6zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta6:"+pregunta6dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentoCabeza:
+                        pregunta6dengue = 0;
+                        pregunta6chikungunya =0;
+                        pregunta6zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta6dengue", pregunta6dengue);
+                        editor.putInt("pregunta6chikungunya", pregunta6chikungunya);
+                        editor.putInt("pregunta6zika", pregunta6zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta6:"+pregunta6dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });

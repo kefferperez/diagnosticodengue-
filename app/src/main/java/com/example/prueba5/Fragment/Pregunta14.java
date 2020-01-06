@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,13 @@ public class Pregunta14 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int diarread=0;
-    int diarreac=0;
-    int diarreaz=0;
-    RadioButton btnTengodiarrea;
-    RadioButton btnNotengodiarrea;
+
     View view;
     Activity actividad;
 
@@ -77,29 +80,46 @@ public class Pregunta14 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta14, container, false);
 
-        btnTengodiarrea=view.findViewById(R.id.radioButtonPresentodiarrea);
-        btnNotengodiarrea=view.findViewById(R.id.radioButtonNoPpresentodiarrea);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengodiarrea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengodiarrea.isChecked()==true){
-                    diarread+=2;
-                    diarreac+=1;
-                    diarreaz+=1;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta14dengue = prefs.getInt("pregunta14dengue", 0);
+                int pregunta14chikungunya=prefs.getInt("pregunta14chikungunya",0);
+                int pregunta14zika=prefs.getInt("pregunta14zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta14dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentodiarrea:
+                        pregunta14dengue = 2;
+                        pregunta14chikungunya =1;
+                        pregunta14zika=1;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta14dengue", pregunta14dengue);
+                        editor.putInt("pregunta14chikungunya", pregunta14chikungunya);
+                        editor.putInt("pregunta14zika", pregunta14zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta13:"+pregunta14dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentodiarrea:
+                        pregunta14dengue = 0;
+                        pregunta14chikungunya =0;
+                        pregunta14zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta14dengue", pregunta14dengue);
+                        editor.putInt("pregunta14chikungunya", pregunta14chikungunya);
+                        editor.putInt("pregunta14zika", pregunta14zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta14:"+pregunta14dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });
-        btnNotengodiarrea.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengodiarrea.isChecked()==true){
-                    diarread+=0;
-                    diarreac+=0;
-                    diarreaz+=0;
-                }
-            }
-        });
+
 
         return view;
     }

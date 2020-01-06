@@ -1,231 +1,340 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    android:orientation="vertical">
 
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        >
+        android:layout_height="match_parent">
 
 
         <LinearLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical" >
+            android:background="#FAFAFA"
+            android:orientation="vertical">
 
-            <TextView
+            <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:textAlignment="center"
-                android:text="Datos del Invitado"
-                android:textSize="30sp" />
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-
+                android:layout_height="match_parent"
+                android:background="#2FA7A7"
+                android:orientation="vertical">
 
 
                 <TextView
-                    android:id="@+id/txtViewNombre"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_alignParentStart="true"
-                    android:layout_alignParentLeft="true"
-                    android:layout_marginStart="23dp"
-                    android:layout_marginLeft="23dp"
-                    android:layout_marginTop="15dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="63dp"
+                    android:layout_marginTop="30dp"
+                    android:background="#00DF5E5E"
+                    android:text="Datos del Invitado"
+                    android:textAlignment="center"
+                    android:textColorHint="#020202"
+                    android:textSize="30sp" />
+            </LinearLayout>
 
-                    android:text="Nombre:"
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginTop="20dp"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewDni"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+                    android:text="DNI:"
+                    android:textColor="#020202"
                     android:textSize="14sp" />
 
                 <EditText
-                    android:id="@+id/edTxtNombre"
-                    android:layout_width="250dp"
+                    android:id="@+id/edTxtDni"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:layout_alignParentEnd="true"
-                    android:layout_alignParentRight="true"
-                    android:layout_marginEnd="18dp"
-                    android:layout_marginRight="10dp"
+                    android:layout_marginRight="30dp"
+
+                    android:layout_weight="1"
                     android:ems="10"
                     android:gravity="center"
                     android:inputType="textCapCharacters" />
-            </RelativeLayout>
+            </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
+                <TextView
+                    android:id="@+id/txtViewNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+
+                    android:layout_weight="2"
+                    android:text="Nombre:"
+                    android:textColor="#020202" />
+
+                <EditText
+                    android:id="@+id/edTxtNombre"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+
+                    android:layout_weight="1"
+
+                    android:ems="10"
+                    android:inputType="textCapCharacters" />
+            </LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="59dp"
+                android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewApellidoPaterno"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
                     android:text="Apellido Paterno:"
+                    android:textColor="#020202"
                     android:textSize="14sp" />
 
                 <EditText
                     android:id="@+id/edTxtApellidoPaterno"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textCapCharacters" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="57dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewApellidoMaterno"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
                     android:text="Apellido Materno:"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/txtViewApellidoPaterno" />
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtApellidoMaterno"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textCapCharacters" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewEdad"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Edad:" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+                    android:text="Edad:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtEdad"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewSexo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Sexo:" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+                    android:text="Sexo:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtSexo"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewDepartamento"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Departamento:" />
+                    android:layout_marginLeft="20dp"
+                    android:layout_weight="2"
+
+                    android:text="Departamento:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtDepartamento"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewProvincia"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Provincia:" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+                    android:text="Provincia:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtProvincia"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewDistrito"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Distrito:" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+                    android:text="Distrito:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtDistrito"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters" />
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewDireccion"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Direccion:" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+                    android:text="Direccion:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtDireccion"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
-                    android:inputType="textCapCharacters"/>
+                    android:inputType="textCapCharacters" />
 
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewCelular"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Celular:" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+
+                    android:text="Celular:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtCelular"
-                    android:layout_width="266dp"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="number" />
             </LinearLayout>
+
             <LinearLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
+                android:layout_width="match_parent"
+                android:layout_height="58dp"
                 android:orientation="horizontal">
+
                 <TextView
                     android:id="@+id/txtViewCorreoElectronico"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:text="Correo electronico:" />
+                    android:layout_marginLeft="30dp"
+                    android:layout_weight="2"
+                    android:text="Correo electronico:"
+                    android:textColor="#020202" />
 
                 <EditText
                     android:id="@+id/edTxtCorreoElectronico"
-                    android:layout_width="wrap_content"
+                    android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginRight="30dp"
+                    android:layout_weight="1"
                     android:ems="10"
                     android:inputType="textPersonName" />
 
@@ -235,12 +344,13 @@
                 android:id="@+id/btnGuardaryContinuar"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Guardar y Continuar"
-                />
+                android:layout_gravity="center"
+                android:layout_marginTop="10dp"
+                android:text="Guardar y Continuar" />
 
         </LinearLayout>
 
     </ScrollView>
 
-</android.support.constraint.ConstraintLayout>
+</LinearLayout>
 

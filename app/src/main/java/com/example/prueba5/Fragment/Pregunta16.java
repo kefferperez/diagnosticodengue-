@@ -2,15 +2,20 @@ package com.example.prueba5.Fragment;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.RadioButton;
+import android.widget.RadioGroup;
 
 import com.example.prueba5.R;
+
+import static android.content.Context.MODE_PRIVATE;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,15 +31,13 @@ public class Pregunta16 extends Fragment {
     private static final String ARG_PARAM1 = "param1";
     private static final String ARG_PARAM2 = "param2";
 
+    private SharedPreferences prefs;
+    private SharedPreferences.Editor editor;
+
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
 
-    int nasald=0;
-    int nasalc=0;
-    int nasalz=0;
-    RadioButton btnTengonasal;
-    RadioButton btnNotengonasal;
     View view;
     Activity actividad;
     private OnFragmentInteractionListener mListener;
@@ -76,29 +79,46 @@ public class Pregunta16 extends Fragment {
         // Inflate the layout for this fragment
         view =inflater.inflate(R.layout.fragment_pregunta16, container, false);
 
-        btnTengonasal=view.findViewById(R.id.radioButtonPresentonasal);
-        btnNotengonasal=view.findViewById(R.id.radioButtonNoPpresentonasal);
+        RadioGroup rg = (RadioGroup) view.findViewById(R.id.resultado);
 
-        btnTengonasal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnTengonasal.isChecked()==true){
-                    nasald+=4;
-                    nasalc+=0;
-                    nasalz+=0;
+        rg.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener()
+        {
+            public void onCheckedChanged(RadioGroup group, int checkedId) {
+                prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+                int pregunta16dengue = prefs.getInt("pregunta16dengue", 0);
+                int pregunta16chikungunya=prefs.getInt("pregunta16chikungunya",0);
+                int pregunta16zika=prefs.getInt("pregunta16zika",0);
+                Log.i("mivalor", "el valor antes del cambio es:"+pregunta16dengue);
+                switch(checkedId){
+
+                    case R.id.radioButtonPresentonasal:
+                        pregunta16dengue = 4;
+                        pregunta16chikungunya =0;
+                        pregunta16zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta16dengue", pregunta16dengue);
+                        editor.putInt("pregunta16chikungunya", pregunta16chikungunya);
+                        editor.putInt("pregunta16zika", pregunta16zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta16:"+pregunta16dengue);
+                        // do operations specific to this selection
+                        break;
+                    case R.id.radioButtonNoPpresentonasal:
+                        pregunta16dengue = 0;
+                        pregunta16chikungunya =0;
+                        pregunta16zika=0;
+                        editor = prefs.edit();
+                        editor.putInt("pregunta16dengue", pregunta16dengue);
+                        editor.putInt("pregunta16chikungunya", pregunta16chikungunya);
+                        editor.putInt("pregunta16zika", pregunta16zika);
+                        editor.apply();
+                        Log.i("mivalor", "pregunta16:"+pregunta16dengue);
+                        // do operations specific to this selection
+                        break;
                 }
             }
         });
-        btnNotengonasal.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                if (btnNotengonasal.isChecked()==true){
-                    nasald+=0;
-                    nasalc+=0;
-                    nasalz+=0;
-                }
-            }
-        });
+
 
         return view;
     }

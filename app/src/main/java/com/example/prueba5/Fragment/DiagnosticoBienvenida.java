@@ -66,11 +66,13 @@ public class DiagnosticoBienvenida extends Fragment {
             mParam2 = getArguments().getString(ARG_PARAM2);
         }
         //Limpiando valor del sharedprefence
-        prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
+       /* prefs= getContext().getSharedPreferences("Config",MODE_PRIVATE);
         editor = prefs.edit();
-        editor.putInt("pregunta1", 0);
-        editor.putInt("pregunta2",0);
-        editor.apply();
+        editor.putInt("pregunta1dengue", 0);
+        editor.putInt("pregunta1chikungunya", 0);
+
+        editor.putInt("pregunta2dengue",0);
+        editor.apply();*/
     }
 
     @Override
